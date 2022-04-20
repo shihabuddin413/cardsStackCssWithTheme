@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap");
+
+:root {
+  --bg-primary: #17141d;
+  --bg-sec: #201c29;
+  --thumb-shadow-1: rgba(255, 255, 255, 0.25);
+  --thumb-shadow-2: rgba(0, 0, 0, 0.25);
+  --card-shadow: #000;
+  --icon-bg: rgb(0, 0, 0, 0.5);
+  --active-icon-bg: #ffee07;
+  --active-icon-fg: rgb(3, 3, 3);
+  --text-color: #fff;
+  --c1: #ffd518;
+  --c2: rgb(255, 37, 171);
+  --icon-border: white;
+  --icon-sec: rgba(255, 255, 255, 0.5);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+  font-family: "DM Mono", monospace;
+}
+
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  /* height: 22rem;
+  width: 25rem;
+  min-width: 16rem; */
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: var(--bg-primary);
+  box-shadow: -1rem 0 3rem var(--card-shadow);
+  transition: 0.3s;
+  border: 2px solid var(--bg-primary);
+}
+
+.card-list {
+  display: flex;
+  padding: 3rem;
+  overflow-x: scroll;
+}
+
+.card-list::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.card-list::-webkit-scrollbar-thumb {
+  background: var(--active-icon-bg);
+  border-radius: 0.625rem;
+  box-shadow: inset 0.125rem 0.125rem 0.125rem var(--thumb-shadow-1),
+    inset -0.125rem -0.125rem -0.125rem var(--thumb-shadow-2);
+}
+
+.card-list::-webkit-scrollbar-track {
+  background: linear-gradient(
+    90deg,
+    var(--bg-sec),
+    var(--bg-sec) 1px,
+    var(--bg-primary) 0,
+    var(--bg-primary)
+  );
+}
+
+.card:hover {
+  transform: translateY(-1.5rem);
+  background: var(--bg-sec);
+  border: 2px solid var(--bg-sec);
+}
+
+.card:hover ~ .card {
+  transform: translateX(8.125rem);
+}
+
+.card:not(:first-child) {
+  margin-left: -8.125rem;
+}
+
+.theme-btns {
+  display: flex;
+  padding: 1rem 3rem;
+}
+
+.theme-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: var(--icon-bg);
+  box-shadow: 0 0 3rem var(--bg-primary);
+  margin-right: 1rem;
+  border: 2px solid var(--icon-border);
+}
+
+.fa-secondary {
+  color: var(--icon-sec);
+}
+
+.fa-primary {
+  color: var(--icon-border);
+}
+
+.active {
+  background: var(--active-icon-bg);
+  border: none;
+}
+
+.active .fa-primary {
+  color: var(--active-icon-fg);
+}
+.active .fa-secondary {
+  color: var(--active-icon-fg);
+}
+
+.card-author {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.7rem 1fr;
+  align-items: center;
+  margin: 3rem 0 0;
+}
+
+.author-avatar img {
+  display: block;
+  overflow: hidden;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  filter: grayscale(100%);
+  margin: 1rem 0.625rem;
+}
+
+.half-circle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 4.1rem;
+  height: 3rem;
+  fill: none;
+  stroke: var(--active-icon-bg);
+  stroke-width: 8;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.author-name-prefix {
+  font-style: normal;
+  font-weight: 700;
+  color: #7a7a8c;
+}
+
+h5 {
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.card-header h2:hover {
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  text-shadow: none;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* the ugly media queries*/
+
+/* small screen  */
+@media only screen and (max-width: 600px) {
+  .card {
+    height: 60vh;
+    width: 12.5rem;
+    min-width: 14rem;
+  }
+  .theme-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* big screen */
+@media only screen and (min-width: 600px) {
+  .card {
+    height: 22rem;
+    width: 25rem;
+    min-width: 16rem;
+  }
+  .theme-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+}
